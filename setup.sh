@@ -2,8 +2,8 @@
 
 # Create bin path
 cd $HOME
-mkdir bin
-PATH=$PATH:$HOME/bin/
+mkdir -p .gems/bin
+PATH=$PATH:$HOME/.gems/bin
 
 # Install terraform
 cd $HOME
@@ -12,6 +12,10 @@ cd terraform11
 sudo apt-get install unzip
 wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
 unzip terraform_0.11.7_linux_amd64.zip
-mv terraform $HOME/bin/.
+sudo mv terraform /usr/local/bin/
 cd $HOME
 rm -rf terraform11
+gem install inspec --no-ri --no-rdoc
+gem install inspec-iggy --no-ri --no-rdoc
+gem install test-kitchen --no-ri --no-rdoc
+gem install kitchen-terraform --no-ri --no-rdoc
