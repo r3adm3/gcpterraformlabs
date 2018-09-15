@@ -7,7 +7,7 @@ PATH=$PATH:$HOME/.gems/bin
 
 # Create SSH key
 mkdir .ssh
-ssh-keygen -t rsa -N "" -f .ssh/gcloud_id_rsa
+ssh-keygen -t rsa -b 4096 -o -a 100 -N "" -f .ssh/gcloud_id_rsa
 
 
 # Install terraform
@@ -21,28 +21,16 @@ sudo mv terraform /usr/local/bin/
 cd $HOME
 rm -rf terraform11
 
-# Install inspec, test-kitchen, kitchen-terraform
-gem install inspec --no-ri --no-rdoc
-gem install inspec-iggy --no-ri --no-rdoc
-gem install test-kitchen --no-ri --no-rdoc
-gem install kitchen-terraform --no-ri --no-rdoc
+# Install kitchen-terraform with its dependenncies like inspec and test-kitchen
+# need to pin to -v 4.0.1
+gem install kitchen-terraform  --no-ri --no-rdoc
 
-# Create Terraform service account
-gcloud iam service-accounts create terraform --display-name terraform-sa
-export TERRAFORM_SA_EMAIL=$(gcloud iam service-accounts list \
-    --filter="displayName:terraform-sa" \
-    --format='value(email)')
-
+# # Get email for the GCE default service account
 export GCE_EMAIL=$(gcloud iam service-accounts list --format='value(email)' | grep compute)
+
+# Get creds for default CE SA
+gcloud iam service-accounts keys create $HOME/.gcloud/Terraform.json --iam-account $GCE_EMAIL
+
+# generate some Env vars
 export PROJECT=$(gcloud info --format='value(config.project)')
 export TF_VAR_project_name=$PROJECT
-
-# Give Terraform SA and GCE default SA roles/owner IAM permissions
-gcloud projects add-iam-policy-binding $PROJECT --role roles/owner --member serviceAccount:$TERRAFORM_SA_EMAIL
-gcloud projects add-iam-policy-binding $PROJECT --role roles/owner --member serviceAccount:$GCE_EMAIL
-gcloud projects add-iam-policy-binding $PROJECT --role roles/owner --member user:$(gcloud config list account --format "value(core.account)")
-
-# Get creds for Terraform SA
-gcloud iam service-accounts keys create $HOME/.gcloud/Terraform.json --iam-account $TERRAFORM_SA_EMAIL
-
-
