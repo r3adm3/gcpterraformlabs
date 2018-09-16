@@ -22,8 +22,7 @@ cd $HOME
 rm -rf terraform11
 
 # Install kitchen-terraform with its dependenncies like inspec and test-kitchen
-# need to pin to -v 4.0.1
-gem install kitchen-terraform  --no-ri --no-rdoc
+gem install kitchen-terraform  -v 4.0.1 --no-ri --no-rdoc
 
 # # Get email for the GCE default service account
 export GCE_EMAIL=$(gcloud iam service-accounts list --format='value(email)' | grep compute)
