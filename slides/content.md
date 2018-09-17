@@ -3,7 +3,7 @@
 
 - 10:00 kickoff
 - 12:00 lunch
-- 13:00 24-hr clock ftw
+- 12:45 24-hr clock ftw
 - 14:00ish wrap-up
 
 ---
@@ -22,3 +22,10 @@ hobbies:
   - techno
 ```
 
+---
+
+Why even test infrastructure?
+
+---
+
+partners

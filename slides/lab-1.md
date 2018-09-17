@@ -1,30 +1,67 @@
 ## Lab 1
 
 
-- 10:00 kickoff
-- 12:00 lunch
-- 13:00 24-hr clock ftw
-- 14:00 wrap-up
+Testing your local environment
 
 ---
 
- #whoami
+json resource
 
-```yaml
----
-name: "Bakh Inamov"
-employer: "Google Cloud"
-title: "Customer Engineer"
-email: shipit@google.com
-hobbies:
-  - beer
-  - skiing
-  - techno
+```ruby
+describe json("#{Dir.home}/.gcloud/Terraform.json") do
+  its('type') { should eq 'service_account' }
+  its(['auth_uri']) { should eq 'https://accounts.google.com/o/oauth2/auth' }
+end
 ```
 
 ---
 
-<img src="./img/cloud_icon_color.png" width="20%" border=0>
-<img src="./img/terraform.png" width="20%" border=0>
+happy output
 
-<img src="./img/inspec_logo.png" width="30%" border=0>
+```bash
+Profile: InSpec Profile (localtests)
+Version: 0.1.0
+Target:  local://
+
+  JSON /home/googlece10626_student/.gcloud/Terraform.json
+     ✔  type should eq "service_account"
+     ✔  ["auth_uri"] should eq "https://accounts.google.com/o/oauth2/auth"
+
+Test Summary: 2 successful, 0 failures, 0 skipped
+```
+
+---
+
+key_rsa resource
+
+```ruby
+describe key_rsa("#{Dir.home}/.ssh/gcloud_id_rsa") do
+  it { should be_private }
+  its('key_length') { should eq 4096 }
+end
+
+describe key_rsa("#{Dir.home}/.ssh/gcloud_id_rsa.pub") do
+  it { should be_public }
+end
+```
+
+---
+
+sad output
+
+```bash
+Profile: InSpec Profile (localtests)
+Version: 0.1.0
+Target:  local://
+
+  JSON /home/googlece10626_student/.gcloud/Terraform.json
+     ✔  type should eq "service_account"
+     ✔  ["auth_uri"] should eq "https://accounts.google.com/o/oauth2/auth"
+  rsa_key /home/googlece10626_student/.ssh/gcloud_id_rsa
+     ×  passphrase error
+  rsa_key /home/googlece10626_student/.ssh/gcloud_id_rsa.pub
+     ×  passphrase error
+
+Test Summary: 2 successful, 2 failures, 0 skipped
+
+```
