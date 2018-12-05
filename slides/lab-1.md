@@ -1,7 +1,11 @@
 ## Lab 1
 
+https://ce.qwiklabs.com
+
+Sign up/signin with your event email
 
 Testing your local environment
+
 
 ---
 
