@@ -18,13 +18,6 @@
 TERRAFORM_VERSION=0.11.11
 KITCHEN_TERRAFORM_VERSION=4.3.0
 
-# Create gems path
-cd $HOME
-mkdir -p .gems/bin
-PATH=$PATH:$HOME/.gems/bin
-
-TERRAFORM_VERSION=0.11.11
-
 # Create SSH key
 if [[ ! -f $HOME/.ssh/gcloud_id_rsa ]]; then
    mkdir -p $HOME/.ssh
@@ -37,7 +30,7 @@ sudo sh -c "curl -s $url | gunzip > /usr/local/bin/terraform"
 sudo chmod +x /usr/local/bin/terraform
 
 # Install kitchen-terraform with its dependencies like inspec and test-kitchen
-gem install kitchen-terraform -v $KITCHEN_TERRAFORM_VERSION --no-document
+sudo gem install kitchen-terraform -v ${KITCHEN_TERRAFORM_VERSION} --no-document
 
 # Get email for the GCE default service account
 export GCE_EMAIL=$(gcloud iam service-accounts list --format='value(email)' | grep compute)
