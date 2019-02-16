@@ -24,8 +24,10 @@ mkdir -p .gems/bin
 PATH=$PATH:$HOME/.gems/bin
 
 # Create SSH key
-mkdir .ssh
-ssh-keygen -t rsa -b 4096 -a 100 -N "" -f .ssh/gcloud_id_rsa
+if [[ ! -f $HOME/.ssh/gcloud_id_rsa ]]; then
+   mkdir -p $HOME/.ssh
+   ssh-keygen -t rsa -b 4096 -a 100 -N "" -f $HOME/.ssh/gcloud_id_rsa
+fi
 
 # Install terraform
 cd $HOME
