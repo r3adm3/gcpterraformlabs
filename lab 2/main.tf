@@ -40,6 +40,20 @@ resource "google_compute_forwarding_rule" "default" {
   name       = "tf-www-forwarding-rule"
   target     = "${google_compute_target_pool.default.self_link}"
   port_range = "80"
+
+  provisioner "local-exec" {
+    working_dir = "${path.module}/integration"
+    command = <<EOC
+cat > inspec.yml <<EOF
+name: integration
+version: 0.1.0
+attributes:
+  - name: pool_public_ip
+    type: string
+    value: ${google_compute_forwarding_rule.default.ip_address}
+EOF
+EOC
+  }
 }
 
 resource "google_compute_instance" "www" {
