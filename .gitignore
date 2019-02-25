@@ -1,2 +1,4 @@
 slides/node_modules*
+lab*/terraform.tfstate*
+lab*/.terraform
 .DS_Store
