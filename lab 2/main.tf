@@ -51,7 +51,7 @@ resource "google_compute_instance" "www" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-1404-trusty-v20160602"
+      image = "family/ubuntu-1404-lts"
     }
   }
 
