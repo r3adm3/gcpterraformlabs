@@ -19,7 +19,6 @@
 provider "google" {
   region      = "us-central1"
   zone        = "us-central1-f"
-  credentials = "${file("${var.credentials_file_path}")}"
 }
 
 resource "google_compute_http_health_check" "default" {
