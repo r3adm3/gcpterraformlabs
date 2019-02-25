@@ -19,7 +19,6 @@
 provider "google" {
   region      = "us-central1"
   zone        = "us-central1-f"
-  project     = "${var.project_name}"
   credentials = "${file("${var.credentials_file_path}")}"
 }
 
