@@ -65,35 +65,15 @@ resource "google_compute_instance" "www" {
     }
   }
 
-  metadata {
-    ssh-keys = "root:${file("${var.public_key_path}")}"
-  }
+  metadata_startup_script = <<EOS
+#!/bin/bash -xe
 
-  provisioner "file" {
-    source      = "${var.install_script_src_path}"
-    destination = "${var.install_script_dest_path}"
-
-    connection {
-      type        = "ssh"
-      user        = "root"
-      private_key = "${file("${var.private_key_path}")}"
-      agent       = false
-    }
-  }
-
-  provisioner "remote-exec" {
-    connection {
-      type        = "ssh"
-      user        = "root"
-      private_key = "${file("${var.private_key_path}")}"
-      agent       = false
-    }
-
-    inline = [
-      "chmod +x ${var.install_script_dest_path}",
-      "sudo ${var.install_script_dest_path} ${count.index}",
-    ]
-  }
+apt-get -y update
+apt-get -y install nginx
+IP=$(curl -s -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/network-interfaces/0/ip)
+echo "Welcome to Resource ${count.index} - tf-www-${count.index} ($IP)" > /usr/share/nginx/html/index.html
+service nginx start
+  EOS
 
   service_account {
     scopes = ["https://www.googleapis.com/auth/compute.readonly"]
