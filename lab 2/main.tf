@@ -17,7 +17,8 @@
 # See https://cloud.google.com/compute/docs/load-balancing/network/example
 
 provider "google" {
-  region      = "${var.region}"
+  region      = "us-central1"
+  zone        = "us-central1-f"
   project     = "${var.project_name}"
   credentials = "${file("${var.credentials_file_path}")}"
 }
@@ -48,7 +49,6 @@ resource "google_compute_instance" "www" {
 
   name         = "tf-www-${count.index}"
   machine_type = "f1-micro"
-  zone         = "${var.region_zone}"
   tags         = ["www-node"]
 
   boot_disk {

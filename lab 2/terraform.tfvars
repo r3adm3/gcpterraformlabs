@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-region = "us-west2"
-region_zone = "us-west2-c"
 credentials_file_path = "~/.gcloud/Terraform.json"
 public_key_path = "~/.ssh/gcloud_id_rsa.pub"
 private_key_path = "~/.ssh/gcloud_id_rsa"
