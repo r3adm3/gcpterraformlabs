@@ -15,3 +15,4 @@ The workshop consists of several labs, each represented by a folder eg `lab 1`.
 
 - Bakh Inamov shipit@google.com
 - JJ Asghar jj@chef.io
+- Ben Bleything bleything@google.com
