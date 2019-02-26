@@ -16,7 +16,7 @@
 
 title 'Retrieve  all GCP Container Cluster Node Pools for a project, cluster and zone'
 
-gcp_project_id = ENV['PROJECT']
+gcp_project_id = ENV['GOOGLE_CLOUD_PROJECT']
 gcp_kube_cluster_name = "gcp-inspec-kube-cluster"
 gcp_kube_cluster_zone = "us-central1-b"
 
