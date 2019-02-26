@@ -2,4 +2,5 @@ slides/node_modules*
 lab*/terraform.tfstate*
 lab*/.terraform
 lab*/*/inspec.lock
+lab 3/.kitchen/
 .DS_Store
