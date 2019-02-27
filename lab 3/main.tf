@@ -14,50 +14,19 @@
 # limitations under the License.
 #
 
-variable "gcp_project_name" {
-  default = "" # go here https://console.cloud.google.com/home/dashboard Under Project Info
-}
-variable "gcp_project_id" {
-  default = "" # Under Project Info
-}
-variable "gcp_project_number" {
-  default = "" # Under Project Info
-}
-
-variable "gcp_kube_cluster_name" {
-  default = "gcp-inspec-kube-cluster"
-}
-variable "gcp_kube_cluster_zone" {
-  default = "us-central1-b"
-}
-variable "gcp_kube_cluster_zone_extra1" {
-  default = "us-central1-a"
-}
-variable "gcp_kube_cluster_zone_extra2" {
-  default = "us-central1-c"
-}
-variable "gcp_kube_cluster_master_user" {
-  default = "gcp-inspec-kube-admin"
-}
-variable "gcp_kube_cluster_master_pass" {
-  default = "x1@qcSnJ16opo#bzuZ21oofnQ"
-}
-
-
 resource "google_container_cluster" "primary" {
-  project = "${var.gcp_project_id}"
-  name               = "${var.gcp_kube_cluster_name}"
-  zone               = "${var.gcp_kube_cluster_zone}"
+  name               = "gcp-inspec-kube-cluster"
+  zone               = "us-central1-b"
   initial_node_count = 3
 
   additional_zones = [
-    "${var.gcp_kube_cluster_zone_extra1}",
-    "${var.gcp_kube_cluster_zone_extra2}",
+    "us-central1-a",
+    "us-central1-c",
   ]
 
   master_auth {
-    username = "${var.gcp_kube_cluster_master_user}"
-    password = "${var.gcp_kube_cluster_master_pass}"
+    username = "gcp-inspec-kube-admin"
+    password = "x1@qcSnJ16opo#bzuZ21oofnQ"
   }
 
   node_config {
