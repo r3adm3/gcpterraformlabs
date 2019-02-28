@@ -18,12 +18,6 @@
 TERRAFORM_VERSION=0.11.11
 KITCHEN_TERRAFORM_VERSION=4.3.0
 
-# Create SSH key
-if [[ ! -f $HOME/.ssh/gcloud_id_rsa ]]; then
-   mkdir -p $HOME/.ssh
-   ssh-keygen -t rsa -b 4096 -a 100 -N "" -f $HOME/.ssh/gcloud_id_rsa
-fi
-
 # Install terraform
 url=https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 sudo sh -c "curl -s $url | gunzip > /usr/local/bin/terraform"
@@ -31,13 +25,3 @@ sudo chmod +x /usr/local/bin/terraform
 
 # Install kitchen-terraform with its dependencies like inspec and test-kitchen
 sudo gem install kitchen-terraform -v ${KITCHEN_TERRAFORM_VERSION} --no-document
-
-# Get email for the GCE default service account
-export GCE_EMAIL=$(gcloud iam service-accounts list --format='value(email)' | grep compute)
-
-# Get creds for default CE SA
-gcloud iam service-accounts keys create $HOME/.gcloud/Terraform.json --iam-account $GCE_EMAIL
-
-# generate some Env vars
-export PROJECT=$(gcloud info --format='value(config.project)')
-export TF_VAR_project_name=$PROJECT

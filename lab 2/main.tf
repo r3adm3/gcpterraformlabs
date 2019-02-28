@@ -17,6 +17,8 @@
 # See https://cloud.google.com/compute/docs/load-balancing/network/example
 
 provider "google" {
+  version = "~> 2.1"
+
   region      = "us-central1"
   zone        = "us-central1-f"
 }
