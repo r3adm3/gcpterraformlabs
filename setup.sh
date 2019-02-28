@@ -18,12 +18,6 @@
 TERRAFORM_VERSION=0.11.11
 KITCHEN_TERRAFORM_VERSION=4.3.0
 
-# Create SSH key
-if [[ ! -f $HOME/.ssh/gcloud_id_rsa ]]; then
-   mkdir -p $HOME/.ssh
-   ssh-keygen -t rsa -b 4096 -a 100 -N "" -f $HOME/.ssh/gcloud_id_rsa
-fi
-
 # Install terraform
 url=https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 sudo sh -c "curl -s $url | gunzip > /usr/local/bin/terraform"
