@@ -31,13 +31,3 @@ sudo chmod +x /usr/local/bin/terraform
 
 # Install kitchen-terraform with its dependencies like inspec and test-kitchen
 sudo gem install kitchen-terraform -v ${KITCHEN_TERRAFORM_VERSION} --no-document
-
-# Get email for the GCE default service account
-export GCE_EMAIL=$(gcloud iam service-accounts list --format='value(email)' | grep compute)
-
-# Get creds for default CE SA
-gcloud iam service-accounts keys create $HOME/.gcloud/Terraform.json --iam-account $GCE_EMAIL
-
-# generate some Env vars
-export PROJECT=$(gcloud info --format='value(config.project)')
-export TF_VAR_project_name=$PROJECT
