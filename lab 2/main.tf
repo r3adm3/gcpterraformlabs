@@ -19,8 +19,8 @@
 provider "google" {
   version = "~> 2.1"
 
-  region      = "us-central1"
-  zone        = "us-central1-f"
+  region = "us-central1"
+  zone   = "us-central1-f"
 }
 
 resource "google_compute_http_health_check" "default" {
@@ -45,6 +45,7 @@ resource "google_compute_forwarding_rule" "default" {
 
   provisioner "local-exec" {
     working_dir = "${path.module}/integration"
+
     command = <<EOC
 cat > inspec.yml <<EOF
 name: integration
