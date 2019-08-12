@@ -29,6 +29,5 @@ control 'gcp-container-cluster-node-pools-1.0' do
     it { should exist }
     its('count') { should be <= 10}
     its('cluster_names') { should include gcp_kube_cluster_name }
-    its('cluster_statuses') { should include "RUNNING" }
   end
 end
