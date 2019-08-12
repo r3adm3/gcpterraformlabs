@@ -16,10 +16,10 @@
 
 resource "google_container_cluster" "primary" {
   name               = "gcp-inspec-kube-cluster"
-  zone               = "us-central1-b"
+  location           = "us-central1-b"
   initial_node_count = 3
 
-  additional_zones = [
+  node_locations = [
     "us-central1-a",
     "us-central1-c",
   ]
