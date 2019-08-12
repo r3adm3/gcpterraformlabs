@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-TERRAFORM_VERSION=0.11.11
-KITCHEN_TERRAFORM_VERSION=4.3.0
+TERRAFORM_VERSION=0.11.14
+KITCHEN_TERRAFORM_VERSION=4.8.1
 
 # Install terraform
 url=https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
