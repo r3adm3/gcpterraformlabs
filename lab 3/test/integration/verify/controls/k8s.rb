@@ -31,3 +31,11 @@ control 'gcp-container-cluster-node-pools-1.0' do
     its('cluster_names') { should include gcp_kube_cluster_name }
   end
 end
+
+control 'gcp-container-cluster' do
+
+  describe google_container_cluster(project: gcp_project_id, zone: gcp_kube_cluster_zone, name: gcp_kube_cluster_name) do
+    it { should exist }
+    its('master_auth.username'){ should eq "gcp-inspec-kube-admin"}
+  end
+end
