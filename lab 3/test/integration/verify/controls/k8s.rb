@@ -39,3 +39,13 @@ control 'gcp-container-cluster' do
     its('master_auth.username'){ should eq "gcp-inspec-kube-admin"}
   end
 end
+
+control 'cluster-data-locality' do
+
+  impact 1.0
+  title 'Ensure cluster is only in us-central1 region'
+
+  describe google_container_cluster(project: gcp_project_id, zone: gcp_kube_cluster_zone, name: gcp_kube_cluster_name) do
+    its('locations.sort'){ should cmp ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f"].sort }
+  end
+end
