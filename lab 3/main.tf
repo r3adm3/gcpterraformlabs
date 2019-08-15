@@ -22,6 +22,7 @@ resource "google_container_cluster" "primary" {
   node_locations = [
     "us-central1-a",
     "us-central1-c",
+    "us-central1-f"
   ]
 
   master_auth {
