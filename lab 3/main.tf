@@ -17,7 +17,7 @@
 resource "google_container_cluster" "primary" {
   name               = "gcp-inspec-kube-cluster"
   location           = "us-central1-b"
-  initial_node_count = 3
+  initial_node_count = 1
 
   node_locations = [
     "us-central1-a",
