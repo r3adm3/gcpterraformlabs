@@ -1,0 +1,130 @@
+    1  ls
+    2  cat README-cloudshell.txt 
+    3  git clone https://gitlab.com/binamov/infrastructure-testing.git
+    4  cd infrastructure-testing/
+    5  ./setup.sh 
+    6  cd lab\ 1/
+    7  cd localtests/
+    8  ls
+    9  inspec exec localtests
+   10  ls
+   11  cd ..
+   12  inspec exec localtests
+   13  ls
+   14  inspecinsssamaogrwf
+   15  ggjkgj
+   16  pwd
+   17  ls
+   18  inspec exec gcptests/ -t gcp://
+   19  cd ..
+   20  ls
+   21  cd lab 2
+   22  ls
+   23  cd lab\ 2/
+   24  ls
+   25  terraform init
+   26  terraform plan
+   27  terraform plan -out plan.out
+   28  terraform apply plan.out
+   29  terraform plan -out plan.out
+   30  terraform apply plan.out
+   31  ls
+   32  inspec exec function
+   33  inspec exec function -t gcp://
+   34  git add . 
+   35  git commit -m "mid lab 2"
+   36  git remote add origin https://github.com/r3adm3/gcpterraformlabs.git
+   37  git push -u origin master
+   38  inspec exec integration
+   39  ls
+   40  ssh-keygen
+   41  cat ~/.ssh/id_rsa.pub 
+   42  git push
+   43  inspec exec integration
+   44  git add . 
+   45  git commit -m "added integration test"
+   46  git push
+   47  git log
+   48  gcloud compute firewall-rules create takeover --allow tcp:21 --target-tags www-node
+   49  terraform plan -out plan.out
+   50  inspec exec gcptests/ -t gcp://
+   51  git add .
+   52  git commit -m "added fw rule"
+   53  git config --global user.name "Adrian Farnell"
+   54  git config --global user.email "adrianjfarnell@gmail.com"
+   55  git add .
+   56  git commit -m "Added fw rule tests"
+   57  nano ~/.gitconfig
+   58  git lg
+   59  nano ~/.gitconfig
+   60  git lg
+   61  inspec exec gcptests/ -t gcp://
+   62  git add . 
+   63  git commit -m "added skip for default fw"
+   64  git remote set-url git@github.com:r3adm3/gcpterraformlabs.git
+   65  git remote set-url origin git@github.com:r3adm3/gcpterraformlabs.git
+   66  git puh
+   67  git push
+   68  clear
+   69  ls
+   70  history
+   71  cd ..
+   72  ls
+   73  git fetch
+   74  ls
+   75  git pull
+   76  ls -al
+   77  history > commands.txt
+   78  git lg
+   79  terraform destroy -auto-approve
+   80  ls
+   81  cd lab\ 2
+   82  ls
+   83  terraform destroy -auto-approve
+   84  cd ../lab\ 3
+   85  kitchen list
+   86  cat .kitchen.yml 
+   87  kitchen converge
+   88  ls -al
+   89  cd .kitchen/
+   90  ls
+   91  ls -al
+   92  cd ..
+   93  ls
+   94  cd ..ls
+   95  kitchen verify
+   96  ls
+   97  ls -al
+   98  cd ..
+   99  ls
+  100  cat .gitignore 
+  101  cd lab\ 3/
+  102  ls -al
+  103  kitchen verify
+  104  git add .
+  105  history ../commands.txt 
+  106  git add .
+  107  git commit -m
+  108  git commit -m "adding new kitchen test"
+  109  git push
+  110  control 'cluster-data-locality' do
+  111  kitchen verify
+  112  git add . 
+  113  git commit -m "added new kitchen test failed"
+  114  git push
+  115  kitchen converge
+  116  kitchen verify
+  117  ls
+  118  ls -al
+  119  cd .kitchen
+  120  ls
+  121  cd logs
+  122  ls
+  123  cat kitchen.log 
+  124  cat verify-k8s.log 
+  125  git status
+  126  cd ..
+  127  git status
+  128  git add .
+  129  git commit -m "post k8s change"
+  130  history > ../commands.txt 
