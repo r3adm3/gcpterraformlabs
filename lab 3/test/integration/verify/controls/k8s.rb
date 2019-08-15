@@ -27,7 +27,7 @@ control 'gcp-container-cluster-node-pools-1.0' do
 
   describe google_container_clusters(project: gcp_project_id, zone: gcp_kube_cluster_zone) do
     it { should exist }
-    its('count') { should be <= 10}
+    its('count') { should be >= 3}
     its('cluster_names') { should include gcp_kube_cluster_name }
   end
 end

@@ -39,3 +39,56 @@ resource "google_container_cluster" "primary" {
     ]
   }
 }
+
+resource "google_container_cluster" "secondary" {
+  name               = "gcp-inspec-kube-cluster-2"
+  location           = "us-central1-b"
+  initial_node_count = 3
+
+  node_locations = [
+    "us-central1-a",
+    "us-central1-c",
+    "us-central1-f"
+  ]
+
+  master_auth {
+    username = "gcp-inspec-kube-admin"
+    password = "x1@qcSnJ16opo#bzuZ21oofnQ"
+  }
+
+  node_config {
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+  }
+}
+
+
+resource "google_container_cluster" "tertiary" {
+  name               = "gcp-inspec-kube-cluster-3"
+  location           = "us-central1-b"
+  initial_node_count = 3
+
+  node_locations = [
+    "us-central1-a",
+    "us-central1-c",
+    "us-central1-f"
+  ]
+
+  master_auth {
+    username = "gcp-inspec-kube-admin"
+    password = "x1@qcSnJ16opo#bzuZ21oofnQ"
+  }
+
+  node_config {
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+  }
+}
