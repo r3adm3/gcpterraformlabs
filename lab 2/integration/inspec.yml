@@ -1,2 +1,6 @@
 name: integration
 version: 0.1.0
+attributes:
+  - name: pool_public_ip
+    type: string
+    value: 35.202.67.70
